@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <Title>Elder Furthark</Title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- actual code start -->
+<body>
+
+    <!-- header start -->
+        <center>
+            <h1 class="bouncy-text" style="scale:0.7;">
+            Furthark
+            </h1>
+        </center>
+    <!-- header end -->
+
+    <!-- rune buttons start -->
+        <center>
+            <button id="rowB descButton" onclick="singleRune(), loadRandomImages(), setGalleryLayout('auto-layout')"><h3>Single Rune</h3></button>
+
+            <button id="columnB descButton" onclick="threeRune(), loadRandomImages(), setGalleryLayout('auto-layout')"><h3>Three Runes</h3></button>
+
+            <button id="crossB descButton" onclick="fiveRune(), loadRandomImages(), setGalleryLayout('cross-layout')"><h3>Five Runes</h3></button>
+        </center>
+    <!-- rune buttons end  -->
+
+    <!-- rune code start -->
+        <div id="gallery" class="auto-layout"></div>
+    <!-- rune code end -->
+
+    <!-- shader load start -->
+        <div id="bg-canvas"></div>
+    <!-- shader load end -->
+
+</body>
+<!-- actual code end -->
+
+<!-- script loading start-->
+    <script src="Javascript/runeloader.js"></script>
+    <script src="Javascript/bouncy.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="Javascript/shader.js"></script>
+<!-- script loading end -->
+
+</html>
+
+<!-- :3 -->
+
+<!-- 
+links to remember:
+https://en.wikipedia.org/wiki/Runes
+https://andreashelley.com/blog/futhark-runes-symbols-and-meanings/
+https://vikingr.org/magic-symbols/elder-futhark
+-->

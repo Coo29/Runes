@@ -1,0 +1,252 @@
+/* general css start */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face { /* pixel font */
+    font-family: 'pixel';
+    src: url('fonts/pixel.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@keyframes bounce { /* keyframes for animated text */
+    5% {
+        transform: translateY(-5%);
+        rotate: 0.5deg;
+    }
+    100% {
+        transform: translateY(5%);
+        rotate: -1deg;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (min-aspect-ratio: 1/1) {
+    .auto-layout {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+}
+
+@media (max-aspect-ratio: 1/1) {
+    .auto-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+a { /* makes links not have the underline */
+    text-decoration: none;
+    color: inherit;
+}
+
+body { /* more general config */
+    position: relative;
+    background-color: #0d2041;
+    background-size: 100% auto;
+    color: #fbfbfb;
+    margin: 0;
+    padding: 0;
+    font-family: 'pixel', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    z-index: 0;
+}
+
+button { /* stylization for buttons */
+    background-color: rgba(0.1,0.1,0.1,0.6);
+    color: #fff;
+    border: 5px solid #fff;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'pixel', sans-serif;
+    transition: background-color 0.3s ease-in-out;
+}
+
+    button:hover { /* stylization for buttons cont. */
+        background-color: #666;
+    }
+
+
+html { /*default font size and general config */
+    font-size: 20px;
+    overflow-x: hidden;
+}
+
+h2, h3, h4, h5, h6, p, a { /* text stylization */
+    letter-spacing: 4px;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.5);
+}
+
+h1 { /* specific design for header1 with larger shadow */
+    letter-spacing: 4px;
+    text-shadow: 3px 3px 0px rgba(0,0,0,0.7);
+    font-size: 4rem;
+    word-break: normal;
+}
+
+h2 { /* makes text marked with h2 larger */
+    font-size: 2rem;
+    word-spacing: normal;
+}
+
+input, select, textarea { /* stylized text fields */
+    background-color: #4e5779;
+    color: #e2ebf9;
+    border: 1px solid #0d2041;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+input, select, textarea, button { /* stylized text fields cont. */
+    font-size: 1rem;
+}
+
+select { /* specifc styles for dropdown menus(?) */
+    background-color: #4e5779;
+    color: #e2ebf9;
+    border: 1px solid #0d2041;
+}
+
+label { /* textbox labels */
+    color: #2d2d2d;
+    font-weight: bold;
+}
+/* general css end */
+
+/* id's start */
+#bg { /* background design, not really used */
+    position:fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+    filter: blur(5px);
+}
+
+#bg-canvas { /* background design with shader, is used */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    filter: blur(6px) brightness(1.4);
+}
+
+#gallery { /* container which  holds the runes */
+    display: grid;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    width: 60vw;
+    margin: 0 auto;
+    max-width: 80vw;
+    max-height: 60vh;
+}
+/* id's end */
+
+/* classes start */
+.container {  /* individual rune container */
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    transition: transform 0.3s ease-in-out;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+    .container:hover .shadow {
+        filter: blur(8px);
+        transform: translateX(10px) translateY(7px);
+    }
+
+    .context-box {
+        position: absolute; /* Ensure it's positioned relative to the page */
+        z-index: 1000; /* Ensure it's on top of other elements */
+        max-width: 350px;
+        word-wrap: break-word;
+        pointer-events: none; /* Make sure it doesn't interfere with clicks */
+        visibility: visible; /* Ensure it's visible */
+        background-color: rgba(0.1,0.1,0.1,0.7);
+        background-blend-mode: darken;
+        color: white;
+        padding: 10px;
+        border: 5px solid white;
+        border-radius: 5px;
+        box-shadow: rgba(0,0,0,0.5);
+    }
+
+.image-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.layer { /* stone and rune design */
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: absolute;
+    transition: scale 0.6s ease-in-out, transform 0.6s ease-in-out;
+}
+
+.shadow { /* stone design (I think) */
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: filter 0.6s ease-in-out, opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+    position: absolute;
+    transform: translateX(2px) translateY(3px);
+    scale: 1;
+    opacity: 0.7;
+    filter: blur(1px);
+}
+
+.auto-layout, .cross-layout {
+    display: grid;
+    place-items: center;
+    gap: 10px;
+}
+
+.row-layout, .column-layout {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.column-layout {
+    flex-direction: column;
+}
+
+.cross-layout {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: min(100vw, 400px);
+    aspect-ratio: 1;
+}
+
+    .cross-layout .container:nth-child(1) { grid-area: 1 / 2; }
+    .cross-layout .container:nth-child(2) { grid-area: 2 / 1; }
+    .cross-layout .container:nth-child(3) { grid-area: 2 / 2; }
+    .cross-layout .container:nth-child(4) { grid-area: 2 / 3; }
+    .cross-layout .container:nth-child(5) { grid-area: 3 / 2; }
+/* classes end */
